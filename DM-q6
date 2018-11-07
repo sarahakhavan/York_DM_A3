@@ -44,8 +44,17 @@ targets = pd.read_csv('./risk-train.csv', usecols=['CLASS'])['CLASS'].values
 
 flag = 0
 train_data = pd.DataFrame(data)
-for index, row in train_data.iterrows():
+for index, row in train_data.iterrows(): # yet we didn't check if all the debit cards or checks do have ? in front of them
     if (row['Z_METHODE'] == 'credit_card') and (row['Z_CARD_ART'] == '?'):
-        flag = 1;
+        flag = 1
 
-print(flag);
+print(flag)
+
+for index, row in train_data.iterrows():
+    if row['Z_CARD_ART'] != '?':
+        train_data['Z_METHODE'][index] += row['Z_CARD_ART']
+
+train_data.drop(['Z_CARD_ART'], axis=1, inplace=True) # to drop a column
+
+print(train_data.head())
+
