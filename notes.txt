@@ -1,0 +1,93 @@
+above: 
+	•	combine z-methode and z-card-art
+	•	check correlation between features (chk)
+	•	3 sotune akhar -> ? missing value nist balke not applicable e
+	•	we have to decide about ? s -> as some of them mean something and some of them don’t (some are just missing values)
+
+
+———
+besbes fills the missing values by prediction done based on the combination of the features he thought might be related to that feature (in case the number of missing values are so high that using simple ways to fill the missing values may lead to eshtebah shodane data)
+he combined the test data set and train data set -> I don’t know why
+he extracted titles from names and produced a useful feature
+he used age AND gender to check the correlation with the target class (using a combination of features to see if they have a correlation with the target class)
+he changes all nominal values to binary values and then omits the ones that are not good enough
+sometimes he uses the most frequent amount of something to fill the missing values
+
+then he selects just some of the features because : 
+
+
+It decreases redundancy among the data
+It speeds up the training process
+It reduces overfitting
+
+does this in Feature Selection section with clf.feature_importance_ in which clf is a randomForestClassifier
+
+
+preprocessing:
+missing values and 
+	•	? haro ye kari konim : 
+	◦	age missing e -1 (naaaaa : poresh konim ba dadeye mani dar)
+	◦	age missing nis va khodesh ye noe dadas, not applicable
+
+==== 
+Missing values :
+kame : haminjuri ba mean o mode poresh konim
+====
+bishtare: predict
+
+	•	combine features 
+	•	extract features
+	•	check for importance and correlations
+	•	deal with nominal (besbes suggestion: get_dummies)
+	•	remove redundant or extra or chert o pert features
+	•	do the steps above  goto above
+
+
+order_id:
+for classification it should be removed
+
+class:
+dataset is imbalanced, we should resolve it
+
+b_birthdate + z_last_name:
+it is not important, no need to preprocess
+
+z_methode & z_card_art:
+these two should be combined
+
+z_card_valid:
+format should be changed, now it is treated as numeric
+
+value_order:
+it should be checked whether it is all numeric or not
+
+time_order:
+it should be: converted to numeric + discretized
+
+for anummers:
+based on the value of the amount_order each anummer has values. so missing values should be replaced with sth meaningful
+
+for anummer_01 to anummer_06:
+can it be discretized? because based on weka it can be discretized easily
+
+anummer_07 to anummer_09:
+they have handful number of values so they can be dropped
+
+anummer_10:
+according to “amount_order”, max amount is 9 so the last anummer is extra and should be dropped
+
+for chks & fails:
+except chk_ladr, all other chks are veeeeery skewed so they can be dropped too + it is the same with fails
+
+neukunde:
+it seems that it can be dropped too, because in weka it seems it does not have any influence on the class label
+
+amount_order_pre:
+it can be 
+
+
+
+
+
+
+
