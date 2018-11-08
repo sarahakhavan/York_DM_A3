@@ -1,35 +1,15 @@
-
-
 import warnings
+import pandas as pd
+
 warnings.filterwarnings('ignore')
 warnings.filterwarnings('ignore', category=DeprecationWarning)
-
-import pandas as pd
-pd.options.display.max_columns = 100
-
-from matplotlib import pyplot as plt
-import numpy as np
-
-import seaborn as sns
-
-import pylab as plot
-params = {
-    'axes.labelsize': "large",
-    'xtick.labelsize': 'x-large',
-    'legend.fontsize': 20,
-    'figure.dpi': 150,
-    'figure.figsize': [25, 7]
-}
-plot.rcParams.update(params)
 
 data = pd.read_csv('./risk-train.csv')
 print(data.shape)
 print(data.describe())
 
 
-from sklearn.ensemble import RandomForestClassifier
-
-targets = pd.read_csv('./risk-train.csv', usecols=['CLASS'])['CLASS'].values
+# targets = pd.read_csv('./risk-train.csv', usecols=['CLASS'])['CLASS'].values
 
 # clf = RandomForestClassifier(n_estimators=50, max_features='sqrt')
 # clf = clf.fit(data, targets)
@@ -44,7 +24,9 @@ targets = pd.read_csv('./risk-train.csv', usecols=['CLASS'])['CLASS'].values
 
 flag = 0
 train_data = pd.DataFrame(data)
-for index, row in train_data.iterrows(): # yet we didn't check if all the debit cards or checks do have ? in front of them
+print(train_data.shape)
+
+for index, row in train_data.iterrows():  # yet we didn't check if all the debit cards or checks do have ? in front of them
     if (row['Z_METHODE'] == 'credit_card') and (row['Z_CARD_ART'] == '?'):
         flag = 1
 
@@ -54,7 +36,7 @@ for index, row in train_data.iterrows():
     if row['Z_CARD_ART'] != '?':
         train_data['Z_METHODE'][index] += row['Z_CARD_ART']
 
-train_data.drop(['Z_CARD_ART'], axis=1, inplace=True) # to drop a column
+train_data.drop(['Z_CARD_ART'], axis=1, inplace=True)  # to drop a column
 
 print(train_data.head())
-
+print('hi')
